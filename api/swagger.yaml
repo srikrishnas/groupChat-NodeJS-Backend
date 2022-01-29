@@ -1,0 +1,505 @@
+swagger: "2.0"
+info:
+  title: groupChat
+  description: "1. Login and create token \n
+                2. use the token to access other services\n
+                ADMIN USERNAME: admin\n
+                ADMIN PASSWORD: password"
+  version: 1.0.0
+basePath: /groupChat
+
+
+paths:
+# ----------------------ADMIN-----------------------------
+  /login:
+    post:
+      tags:
+      - login
+      summary: "login"
+      description: "login"
+      operationId: login
+
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "id"
+        required: true
+        schema:
+          $ref: "#/definitions/loginData"     
+        
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "authenticationController"
+
+  /createUser:
+    post:
+      tags:
+      - Admin Manage Users
+      summary: "createUser"
+      description: "createUser"
+      operationId: createUser
+
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+
+      parameters:
+      - in: 'header'
+        name: 'Authorization'
+        type: 'string'
+        required: true
+        description: 'auth_key'
+      - in: "body"
+        name: "body"
+        description: "id"
+        required: true
+        schema:
+          $ref: "#/definitions/createUser"     
+        
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "adminFunctionsController"
+
+  /deleteUser:
+    post:
+      tags:
+      - Admin Manage Users
+      summary: "createUser"
+      description: "createUser"
+      operationId: deleteUser
+
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+
+      parameters:
+      - in: 'header'
+        name: 'Authorization'
+        type: 'string'
+        required: true
+        description: 'auth_key'
+      - in: "body"
+        name: "body"
+        description: "id"
+        required: true
+        schema:
+          $ref: "#/definitions/deleteUser"     
+        
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "adminFunctionsController"
+
+  /updateUser:
+    post:
+      tags:
+      - Admin Manage Users
+      summary: "createUser"
+      description: "createUser"
+      operationId: updateUser
+
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+
+      parameters:
+      - in: 'header'
+        name: 'Authorization'
+        type: 'string'
+        required: true
+        description: 'auth_key'
+      - in: "body"
+        name: "body"
+        description: "id"
+        required: true
+        schema:
+          $ref: "#/definitions/updateUser"     
+        
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "adminFunctionsController"
+
+  /getAllUsers:
+    get:
+      tags:
+      - Admin Manage Users
+      summary: "getAllUsers"
+      description: "getAllUsers"
+      operationId: getAllUsers
+
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+
+      parameters:
+      - in: 'header'
+        name: 'Authorization'
+        type: 'string'
+        required: true
+        description: 'auth_key'
+        
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "adminFunctionsController"
+
+# ----------------------ADMIN-----------------------------
+
+# ----------------------USER-----------------------------
+  /getAllGroups:
+    get:
+      tags:
+      - Users Endpoints
+      summary: "getAllGroups"
+      description: "getAllGroups"
+      operationId: getAllGroups
+
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+
+      parameters:
+      - in: 'header'
+        name: 'Authorization'
+        type: 'string'
+        required: true
+        description: 'auth_key'
+        
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "userFunctionsController"
+
+  /createGroup:
+    post:
+      tags:
+      - Users Endpoints
+      summary: "createGroup"
+      description: "createGroup"
+      operationId: createGroup
+
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+
+      parameters:
+      - in: 'header'
+        name: 'Authorization'
+        type: 'string'
+        required: true
+        description: 'auth_key'
+      - in: "body"
+        name: "body"
+        description: "id"
+        required: true
+        schema:
+          $ref: "#/definitions/createGroup"     
+        
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "userFunctionsController"
+
+  /deleteGroup:
+    post:
+      tags:
+      - Users Endpoints
+      summary: "deleteGroup"
+      description: "deleteGroup"
+      operationId: deleteGroup
+
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+
+      parameters:
+      - in: 'header'
+        name: 'Authorization'
+        type: 'string'
+        required: true
+        description: 'auth_key'
+      - in: "body"
+        name: "body"
+        description: "id"
+        required: true
+        schema:
+          $ref: "#/definitions/deleteGroup"     
+        
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "userFunctionsController"
+
+  /addMembers:
+    post:
+      tags:
+      - Users Endpoints
+      summary: "addMembers"
+      description: "addMembers"
+      operationId: addMembers
+
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+
+      parameters:
+      - in: 'header'
+        name: 'Authorization'
+        type: 'string'
+        required: true
+        description: 'auth_key'
+      - in: "body"
+        name: "body"
+        description: "id"
+        required: true
+        schema:
+          $ref: "#/definitions/addMembers"     
+        
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "userFunctionsController"
+
+  /sendMessage:
+    post:
+      tags:
+      - Users Endpoints
+      summary: "sendMessage"
+      description: "sendMessage"
+      operationId: sendMessage
+
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+
+      parameters:
+      - in: 'header'
+        name: 'Authorization'
+        type: 'string'
+        required: true
+        description: 'auth_key'
+      - in: "body"
+        name: "body"
+        description: "id"
+        required: true
+        schema:
+          $ref: "#/definitions/sendMessage"     
+        
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "userFunctionsController"
+
+  /likeMessage:
+    post:
+      tags:
+      - Users Endpoints
+      summary: "likeMessage"
+      description: "likeMessage"
+      operationId: likeMessage
+
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+
+      parameters:
+      - in: 'header'
+        name: 'Authorization'
+        type: 'string'
+        required: true
+        description: 'auth_key'
+      - in: "body"
+        name: "body"
+        description: "id"
+        required: true
+        schema:
+          $ref: "#/definitions/likeMessage"     
+        
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+      x-swagger-router-controller: "userFunctionsController"      
+
+# ----------------------USER-----------------------------
+
+definitions:
+  loginData:
+    type: "object" 
+    properties:  
+      user_name:
+        type: string
+      password:
+        type: string
+
+  createUser:
+    type: "object" 
+    properties:  
+      user_name:
+        type: string
+      user_password:
+        type: string
+      user_role:
+        type: string
+
+  deleteUser:
+    type: "object" 
+    properties:  
+      user_name:
+        type: string
+
+  updateUser:
+    type: "object" 
+    properties:
+      user_name_to_be_changed:
+        type: string
+      user_name:
+        type: string  
+      user_password:
+        type: string
+      user_role:
+        type: string
+
+  createGroup:
+    type: "object" 
+    properties:  
+      group_name:
+        type: string
+
+  deleteGroup:
+    type: "object" 
+    properties:  
+      group_name:
+        type: string
+  
+  addMembers:
+    type: "object" 
+    properties:  
+      group_name:
+        type: string
+      user_name:
+        type: string
+  
+  sendMessage:
+    type: "object" 
+    properties:  
+      group_name:
+        type: string
+      message:
+        type: string
+
+  likeMessage:
+    type: "object" 
+    properties:  
+      group_name:
+        type: string
+      message_id:
+        type: string
+      operation:
+        type: string
+
+  ApiResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      data:
+        type: object
+    example:
+      code: 0
+      data: { 'response': 'api_response_data' }
+
+  ErrorResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
